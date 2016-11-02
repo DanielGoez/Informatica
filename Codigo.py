@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 #var_fis = variable fisiologica
 #clase contenedora de los objetos tipo estudio y var_fis
 
+
 class Biblioteca(object):
   
     #Inicializador clase buscador
