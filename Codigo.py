@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from _ast import Pass
 #var_fis = variable fisiologica
 #clase contenedora de los objetos tipo estudio y var_fis
 
 class Biblioteca(object):
-  
+    
     #Inicializador clase buscador
     def __init__(self,Estudios=(None)):
         #self.estudios atributo de clase buscasdor (Lista)
@@ -12,6 +13,9 @@ class Biblioteca(object):
 
     #Agrega los objetos tipo estudio al atributo self.estudios 
     """por que aqui?"""
+    '''Este es el metodo que agrega los objetos tipo estudio al atributo self.estudio(este es una lista).   
+    Si quiere cambiele el nombre para que quede mas intuitivo '''
+
     def add_busc (self,Estudio):
         self.estudios.extend(Estudio)
         print('...Estudio agregado a base de datos ')
@@ -22,43 +26,18 @@ class Biblioteca(object):
         else: return False
      
     def menuInicial(self,option):
-        print ("1. Agregar estudio")
-        print ("2. Consultar estudios")
-        print ("3. Salir")
-        option = self.input_validate(self)
-        if option == 1: """crear objeto tipo estudio"""
-        elif option == 2: """Si no hay estudios: "No hay estudios que consultar"
-        y vuelve a el menu inicial
-        si hay estudios, se procede a #buscar en un objeto tipo biblioteca 
-        (modificar metodo contains esta clase),
-        que debe ser un diccionaio o array de objetos tipo estudio""" 
-        else: """salir"""
-        
-    # valida entradas numericas de los input para menu
-    def input_validate(self,tipo="int"):
-        '''
-        consult_validate (int) -> int
-        
-        retorna un entero segun estas instrucciones:  
-        Si tipo == binary: x debe ser adquirir el valor de 1 o 2.
-        
-        >>> consult_validate (binary)
-        Por favor ingrese un número:
-        1
-        1
-        '''
-        while True:
-            try:
-                #Valida para enteros
-                option = int(input("Por favor ingrese un número: "))
-                #Valida para entradas 1 o 2
-                if tipo == "binary":
-                    if not (option == 1) or not (option == 2): option = int("error")
-                break
-            except ValueError:
-                print("Oops! No era válido. Intente nuevamente...")
-        return option
-    
+        opcion = True
+        while opcion!=0:
+            print ("1. Agregar estudio")
+            print ("2. Agregar factor pronostico")
+            print ("3. Consultar Estudios")
+            print ("4. Consultar Estadisticos de un factor pronostico (Asociados a un estudio)")
+            print ('5. Consultar Estadisticos de todos los factores pronostico (Asociados a un estudio)')
+            print ('6. Graficar una variable fisiologica asociada a un estudio')
+            print ("0. Salir")
+            try:    
+                int(input('Ingrese el número de la opción que desea...  '))
+        Pass
             
             
 class Estudio(object):
@@ -69,9 +48,9 @@ class Estudio(object):
         self.id = ID
         self.var_fi = Var_Fi
         print('...Estudio creado')
-        #Ejecuta la funcion add_busc de la clase Buscador
-        ##Esto por que esta aqui?
-        Buscador.add_busc(self, Estudio)
+
+        '''Ejecuta la funcion add de biblioteca. y guarda ekl objeto tipo estudio en el atributo self.estudio de biblioteca'''
+        Buscador.add_busc(self,Estudio)
         
         
     #Agrega las variables fisiologicas al atributo self.var_fi   
@@ -79,7 +58,7 @@ class Estudio(object):
         self.var_fi.extend(Var_Fis)
         print('... Variable agregada a estudio')    
     
-    # sobrecarga del metodo contains para crear buscador
+    # sobrecarga del metodo contains para usar en el buscador
     def __contains__ (self,key):
         pass
 
